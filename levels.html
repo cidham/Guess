@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Level</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1 class="level-title">Guess the player to unlock next level</h1>
+<div class="levels-container">
+<script>
+for (let i = 1; i <= 25; i++) {
+    let button = document.createElement("button");
+    button.textContent = "Level " + i;
+    button.onclick = function () { startGame(i); };
+    button.id = "level" + i;
+    button.classList.add("level-button");
+
+    if (i > 1 && sessionStorage.getItem("level") < i) {
+        button.disabled = true;
+        button.classList.add("blur");
+    }
+
+    document.querySelector(".levels-container").appendChild(button);
+}
+
+function startGame(level) {
+    sessionStorage.setItem("level", level);
+    window.location.href = "game.html";
+}
+
+let unlockedLevel = parseInt(sessionStorage.getItem("level")) || 1;
+for (let j = 2; j <= unlockedLevel; j++) {
+    let button = document.getElementById("level" + j);
+    if (button) {
+        button.disabled = false;
+        button.classList.remove("blur");
+    }
+}
+</script>
+</div>
+</body>
+</html>

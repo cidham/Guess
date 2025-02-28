@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Guess the Cricketer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="options-container">
+<p id="guessesLeft">Guesses Left: 15</p>
+
+<select id="continent" onchange="makeGuess('continent')">
+<option>Select Continent</option>
+<option>Asia</option>
+<option>Europe</option>
+<option>Africa</option>
+<option>Oceanic</option>
+<option>America</option>
+</select>
+
+<select id="country" onchange="makeGuess('country')">
+<option>Select Country</option>
+<option>India</option>
+<option>Pakistan</option>
+<option>Australia</option>
+<option>England</option>
+<option>West Indies</option>
+</select>
+
+<select id="role" onchange="makeGuess('role')">
+<option>Select Role</option>
+<option>Batsman</option>
+<option>Bowler</option>
+<option>Allrounder</option>
+<option>Wicketkeeper</option>
+</select>
+
+<select id="hand" onchange="makeGuess('hand')">
+<option>Select Hand</option>
+<option>Right</option>
+<option>Left</option>
+</select>
+
+<select id="type" onchange="makeGuess('type')">
+<option>Select type</option>
+<option>Fast</option>
+<option>Spin</option>
+</select>
+
+<input type="text" id="playerName" placeholder="Enter Player Name">
+<button onclick="makeGuess('name')">Guess</button>
+
+<div id="clueList"></div>
+<div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
