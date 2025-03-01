@@ -8,10 +8,10 @@
 <h1 class="level-title">Unlock Levels and Hit Sixes!</h1>
 <div class="levels-container">
 <script>
-for (let i = 1; i <= 25; i++) {
+for (let i = 1; i <= 100; i++) {
     let button = document.createElement("div");
     button.className = "level-button";
-    button.textContent = i; 
+    button.textContent = i;
     button.onclick = function () { startGame(i); };
     button.id = "level" + i;
 
