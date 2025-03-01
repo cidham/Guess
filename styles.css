@@ -231,3 +231,29 @@ button:hover {
     background: #00f260;
 }
 
+body.options-page {
+    background-image: url('options_background.png'); /* Background Image Path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white; 
+    overflow-y: auto;
+}
+
+.options-container {
+    background: rgba(0, 0, 0, 0.7); /* Optional dark background box */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
