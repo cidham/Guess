@@ -13,7 +13,7 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     color: white;
-    overflow-y: auto; /* Enable vertical scroll */
+    overflow: hidden; /* Disable body scroll */
 }
 
 .level-title {
@@ -27,13 +27,24 @@ body {
     padding: 30px;
     margin-top: 20px; /* Space between title and grid */
     border-radius: 15px;
-    max-width: 100%; /* Full width */
+    width: 90%; /* Full width for mobile */
     max-height: 80vh; /* Fit within screen */
     text-align: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
     gap: 20px;
-    overflow-y: auto; /* Enable scrolling inside container */
+    overflow-y: scroll; /* Enable vertical scroll only in the container */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: rgba(255, 193, 7, 0.7) transparent; /* Custom Scrollbar */
+}
+
+.levels-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.levels-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 193, 7, 0.7); 
+    border-radius: 10px;
 }
 
 .level-button {
@@ -61,10 +72,12 @@ body {
 
 .unlocked {
     filter: brightness(1.2);
+    cursor: pointer;
 }
 
 .blur {
     filter: grayscale(100%) brightness(0.7);
     cursor: not-allowed;
     box-shadow: none;
+    pointer-events: none; /* Prevent clicking */
 }

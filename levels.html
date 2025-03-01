@@ -8,15 +8,23 @@
 <h1 class="level-title">Unlock Levels and Hit Sixes!</h1>
 <div class="levels-container">
 <script>
+let unlockedLevel = parseInt(sessionStorage.getItem("level")) || 1;
+
 for (let i = 1; i <= 100; i++) {
     let button = document.createElement("div");
     button.className = "level-button";
     button.textContent = i;
-    button.onclick = function () { startGame(i); };
+    button.onclick = function () {
+        if (i <= unlockedLevel) {
+            startGame(i);
+        }
+    };
     button.id = "level" + i;
 
-    if (i > 1 && sessionStorage.getItem("level") < i) {
+    if (i > unlockedLevel) {
         button.classList.add("blur");
+    } else {
+        button.classList.add("unlocked");
     }
 
     document.querySelector(".levels-container").appendChild(button);
@@ -25,15 +33,6 @@ for (let i = 1; i <= 100; i++) {
 function startGame(level) {
     sessionStorage.setItem("level", level);
     window.location.href = "game.html";
-}
-
-let unlockedLevel = parseInt(sessionStorage.getItem("level")) || 1;
-for (let j = 1; j <= unlockedLevel; j++) {
-    let button = document.getElementById("level" + j);
-    if (button) {
-        button.classList.add("unlocked");
-        button.classList.remove("blur");
-    }
 }
 </script>
 </div>

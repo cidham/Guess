@@ -54,11 +54,13 @@ let guesses = getGuessesByLevel(level);
 document.getElementById("guessesLeft").innerText = `Guesses Left: ${guesses}`;
 
 function getGuessesByLevel(level) {
-    if (level >= 1 && level <= 10) return 15;
-    if (level >= 11 && level <= 15) return 12;
-    if (level >= 16 && level <= 20) return 10;
-    if (level >= 21 && level <= 25) return 8;
-    return 15;
+    if (level >= 1 && level <= 20) return 15;
+    if (level >= 21 && level <= 40) return 13;
+    if (level >= 41 && level <= 60) return 11;
+    if (level >= 61 && level <= 80) return 9;
+    if (level >= 81 && level <= 95) return 7;
+    if (level >= 96 && level <= 100) return 5;
+    return 15; // Default guess count
 }
 
 function makeGuess(type) {
@@ -75,20 +77,17 @@ function makeGuess(type) {
         document.getElementById("guessesLeft").innerText = `Guesses Left: ${guesses}`;
 
         let result = guessValue + ": ";
-        if ((type === 'continent' && guessValue === selectedPlayer.continent) ||
-            (type === 'country' && guessValue === selectedPlayer.country) ||
-            (type === 'role' && guessValue === selectedPlayer.role) ||
-            (type === 'hand' && guessValue === selectedPlayer.hand) ||
-            (type === 'type' && guessValue === selectedPlayer.type) ||
-            (type === 'name' && selectedPlayer.name.toLowerCase().includes(guessValue))) {
-            result += "<span class='correct'>Yes</span>";
-            document.getElementById("clueList").innerHTML += `<p>${result}</p>`;
-        } else {
-            result += "<span class='wrong'>No</span>";
-            document.getElementById("clueList").innerHTML += `<p>${result}</p>`;
-        }
+        let isCorrect = (type === 'continent' && guessValue === selectedPlayer.continent) ||
+                        (type === 'country' && guessValue === selectedPlayer.country) ||
+                        (type === 'role' && guessValue === selectedPlayer.role) ||
+                        (type === 'hand' && guessValue === selectedPlayer.hand) ||
+                        (type === 'type' && guessValue === selectedPlayer.type) ||
+                        (type === 'name' && selectedPlayer.name.toLowerCase().includes(guessValue));
 
-        if (type === 'name' && selectedPlayer.name.toLowerCase().includes(guessValue)) {
+        result += isCorrect ? "<span class='correct'>Yes</span>" : "<span class='wrong'>No</span>";
+        document.getElementById("clueList").innerHTML += `<p>${result}</p>`;
+
+        if (isCorrect && type === 'name') {
             showDialog(`Congrats! You are right. You have unlocked the next level.`);
             unlockNextLevel();
             return;
@@ -120,7 +119,8 @@ function closeDialog() {
 }
 
 function unlockNextLevel() {
-    sessionStorage.setItem("level", level + 1);
+    let nextLevel = level + 1;
+    sessionStorage.setItem("level", nextLevel);
     setTimeout(() => {
         window.location.href = "levels.html";
     }, 2000);
