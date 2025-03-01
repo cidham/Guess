@@ -1,0 +1,37 @@
+body {
+    background-image: url('cricket_background.png');
+    background-size: cover; /* Cover entire page */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.instruction-container {
+    background: rgba(0, 0, 0, 0.7); /* Transparent dark box */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Darker green */
+}
