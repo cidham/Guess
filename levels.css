@@ -7,22 +7,33 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Align items vertically */
+    justify-content: flex-start; /* Align content from the top */
     align-items: center;
     text-align: center;
     font-family: Arial, sans-serif;
-    color: white; 
+    color: white;
+    overflow-y: auto; /* Enable vertical scroll */
+}
+
+.level-title {
+    margin-top: 20px; /* Space from top */
+    font-size: 2em;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
 }
 
 .levels-container {
     background: rgba(0, 0, 0, 0.7); /* Transparent black box */
     padding: 30px;
+    margin-top: 20px; /* Space between title and grid */
     border-radius: 15px;
-    max-width: 800px;
+    max-width: 100%; /* Full width */
+    max-height: 80vh; /* Fit within screen */
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    gap: 20px;
+    overflow-y: auto; /* Enable scrolling inside container */
 }
 
 .level-button {
