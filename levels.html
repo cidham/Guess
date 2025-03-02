@@ -9,8 +9,17 @@
 <div class="levels-container">
 <script>
 let unlockedLevel = parseInt(sessionStorage.getItem("level")) || 1;
+let currentPage = parseInt(sessionStorage.getItem("page")) || 1;
+let start = (currentPage - 1) * 100 + 1;
+let end = currentPage * 100;
 
-for (let i = 1; i <= 100; i++) {
+// Redirect to previous page if unauthorized
+if (unlockedLevel < start && currentPage > 1) {
+    sessionStorage.setItem("page", currentPage - 1);
+    location.reload();
+}
+
+for (let i = start; i <= end; i++) {
     let button = document.createElement("div");
     button.className = "level-button";
     button.textContent = i;
@@ -34,7 +43,27 @@ function startGame(level) {
     sessionStorage.setItem("level", level);
     window.location.href = "game.html";
 }
+
+function goToNextPage() {
+    if (unlockedLevel > end) {
+        sessionStorage.setItem("page", currentPage + 1);
+        location.reload();
+    }
+}
+
+function goToPreviousPage() {
+    if (currentPage > 1) {
+        sessionStorage.setItem("page", currentPage - 1);
+        location.reload();
+    }
+}
 </script>
+</div>
+
+
+<div class="button-container">
+    <button class="nav-button" onclick="goToPreviousPage()">⬅ Back</button>
+    <button class="nav-button" onclick="goToNextPage()">Next ➡</button>
 </div>
 </body>
 </html>

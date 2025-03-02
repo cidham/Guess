@@ -54,13 +54,24 @@ let guesses = getGuessesByLevel(level);
 document.getElementById("guessesLeft").innerText = `Guesses Left: ${guesses}`;
 
 function getGuessesByLevel(level) {
-    if (level >= 1 && level <= 20) return 15;
-    if (level >= 21 && level <= 40) return 13;
-    if (level >= 41 && level <= 60) return 11;
-    if (level >= 61 && level <= 80) return 9;
-    if (level >= 81 && level <= 95) return 7;
-    if (level >= 96 && level <= 100) return 5;
-    return 15; // Default guess count
+    let base = Math.floor((level - 1) / 100) * 100; // Determine which set of 100 levels
+    let relativeLevel = level - base; // Get level within the current set
+
+    if (relativeLevel >= 1 && relativeLevel <= 20) {
+        return 15;
+    } else if (relativeLevel >= 21 && relativeLevel <= 50) {
+        return 13;
+    } else if (relativeLevel >= 51 && relativeLevel <= 70) {
+        return 11;
+    } else if (relativeLevel >= 71 && relativeLevel <= 90) {
+        return 9;
+    } else if (relativeLevel >= 91 && relativeLevel <= 95) {
+        return 7;
+    } else if (relativeLevel >= 96 && relativeLevel <= 100) {
+        return 5;
+    } else {
+        return 0; // Invalid level
+    }
 }
 
 function makeGuess(type) {
